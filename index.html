@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Схеми для В'язання Крючком</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FAF7F2;
+            --warm-white: #FFFFFF;
+            --charcoal: #2C2C2C;
+            --soft-grey: #8B8B8B;
+            --accent-rust: #C77B5D;
+            --accent-sage: #8FA38C;
+            --accent-terracotta: #D4745A;
+            --border-light: #E5E0D8;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, var(--cream) 0%, #FFF9F1 100%);
+            color: var(--charcoal);
+            min-height: 100vh;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeIn 0.8s ease;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: var(--soft-grey);
+            font-weight: 400;
+            letter-spacing: 0.03em;
+        }
+
+        .controls {
+            background: var(--warm-white);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 24px var(--shadow);
+            border: 1px solid var(--border-light);
+            animation: slideUp 0.6s ease 0.2s both;
+        }
+
+        .control-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        input[type="number"],
+        input[type="file"],
+        select {
+            padding: 0.75rem;
+            border: 2px solid var(--border-light);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'DM Sans', sans-serif;
+            transition: all 0.2s ease;
+            background: var(--warm-white);
+        }
+
+        input[type="number"]:focus,
+        input[type="file"]:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--accent-rust);
+            box-shadow: 0 0 0 3px rgba(199, 123, 93, 0.1);
+        }
+
+        input[type="number"],
+        select {
+            width: 100%;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 0.875rem 1.75rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-rust), var(--accent-terracotta));
+            color: white;
+            box-shadow: 0 4px 12px rgba(199, 123, 93, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(199, 123, 93, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--warm-white);
+            color: var(--charcoal);
+            border: 2px solid var(--border-light);
+        }
+
+        .btn-secondary:hover {
+            background: var(--cream);
+            border-color: var(--accent-sage);
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--accent-rust);
+        }
+
+        .canvas-wrapper {
+            background: var(--warm-white);
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px var(--shadow);
+            border: 1px solid var(--border-light);
+            min-height: 400px;
+            animation: slideUp 0.6s ease 0.4s both;
+            overflow: auto;
+        }
+
+        .canvas-container {
+            display: inline-block;
+        }
+
+        #gridCanvas {
+            border: 2px solid var(--border-light);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            display: block;
+        }
+
+        .image-preview {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--cream);
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+        }
+
+        .preview-image {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 4px;
+            display: block;
+            margin: 0.5rem 0;
+        }
+
+        .dimension-info {
+            font-size: 0.875rem;
+            color: var(--soft-grey);
+            margin-top: 0.5rem;
+        }
+
+        .info-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: var(--accent-sage);
+            color: white;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            animation: slideUp 0.6s ease 0.6s both;
+        }
+
+        .placeholder {
+            text-align: center;
+            color: var(--soft-grey);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            padding: 4rem 2rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .zoom-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .zoom-control input[type="range"] {
+            width: 150px;
+            accent-color: var(--accent-rust);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .controls {
+                padding: 1.5rem;
+            }
+
+            .canvas-wrapper {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Схеми для В'язання Крючком</h1>
+            <p class="subtitle">Створюйте пікселізовані візерунки з ваших зображень</p>
+        </header>
+
+        <div class="controls">
+            <div class="control-group">
+                <div class="input-wrapper">
+                    <label for="imageInput">Завантажити зображення</label>
+                    <input type="file" id="imageInput" accept="image/*">
+                </div>
+                <div class="input-wrapper">
+                    <label for="gridWidth">Ширина (петлі)</label>
+                    <input type="number" id="gridWidth" value="60" min="10" max="200">
+                </div>
+                <div class="input-wrapper">
+                    <label for="gridHeight">Висота (ряди)</label>
+                    <input type="number" id="gridHeight" value="60" min="10" max="200">
+                </div>
+            </div>
+
+            <div id="imagePreview" style="display: none;" class="image-preview">
+                <label>Попередній перегляд:</label>
+                <img id="previewImg" class="preview-image" alt="Preview">
+                <div class="dimension-info">
+                    <span id="imageDimensions"></span>
+                </div>
+                <div class="button-group" style="margin-top: 1rem;">
+                    <button class="btn-secondary" id="useOriginalSize">Використати оригінальний розмір</button>
+                    <button class="btn-secondary" id="keepAspectRatio">Пропорційно до ширини</button>
+                </div>
+            </div>
+
+            <div class="checkbox-wrapper">
+                <input type="checkbox" id="showCoordinates" checked>
+                <label for="showCoordinates">Показати координати</label>
+            </div>
+
+            <div class="checkbox-wrapper">
+                <input type="checkbox" id="colorMode" checked>
+                <label for="colorMode">Кольоровий режим</label>
+            </div>
+
+            <div class="input-wrapper" style="margin-bottom: 1rem;">
+                <label for="colorCount">Кількість кольорів ниток</label>
+                <select id="colorCount">
+                    <option value="2">2 кольори (чорно-білий)</option>
+                    <option value="3">3 кольори</option>
+                    <option value="4" selected>4 кольори</option>
+                    <option value="5">5 кольорів</option>
+                    <option value="6">6 кольорів</option>
+                    <option value="8">8 кольорів</option>
+                    <option value="10">10 кольорів</option>
+                    <option value="12">12 кольорів</option>
+                </select>
+            </div>
+
+            <div class="button-group">
+                <button class="btn-primary" id="generateBtn">Згенерувати схему</button>
+                <button class="btn-secondary" id="downloadBtn" style="display: none;">Завантажити PNG</button>
+            </div>
+
+            <div class="zoom-control" id="zoomControl" style="display: none; margin-top: 1rem;">
+                <label>Масштаб:</label>
+                <input type="range" id="zoomSlider" min="0.5" max="3" step="0.1" value="1">
+                <span id="zoomValue">100%</span>
+            </div>
+        </div>
+
+        <div class="canvas-wrapper" id="canvasWrapper">
+            <div class="placeholder">Завантажте зображення та натисніть "Згенерувати схему"</div>
+        </div>
+
+        <div class="info-panel" id="infoPanel" style="display: none;">
+            <span id="gridInfo">Схема: 60 × 60 петель</span>
+            <span id="colorInfo">Кольорів: 2</span>
+        </div>
+    </div>
+
+    <script>
+        const state = {
+            image: null,
+            gridWidth: 60,
+            gridHeight: 60,
+            showCoordinates: true,
+            colorMode: true,
+            colorCount: 4,
+            zoom: 1,
+            colors: [],
+            gridData: [],
+            originalImageWidth: 0,
+            originalImageHeight: 0
+        };
+
+        const imageInput = document.getElementById('imageInput');
+        const gridWidthInput = document.getElementById('gridWidth');
+        const gridHeightInput = document.getElementById('gridHeight');
+        const showCoordinatesCheckbox = document.getElementById('showCoordinates');
+        const colorModeCheckbox = document.getElementById('colorMode');
+        const colorCountSelect = document.getElementById('colorCount');
+        const generateBtn = document.getElementById('generateBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const zoomSlider = document.getElementById('zoomSlider');
+        const zoomValue = document.getElementById('zoomValue');
+        const canvasWrapper = document.getElementById('canvasWrapper');
+        const infoPanel = document.getElementById('infoPanel');
+        const gridInfo = document.getElementById('gridInfo');
+        const colorInfo = document.getElementById('colorInfo');
+        const zoomControl = document.getElementById('zoomControl');
+        const imagePreview = document.getElementById('imagePreview');
+        const previewImg = document.getElementById('previewImg');
+        const imageDimensions = document.getElementById('imageDimensions');
+        const useOriginalSize = document.getElementById('useOriginalSize');
+        const keepAspectRatio = document.getElementById('keepAspectRatio');
+
+        imageInput.addEventListener('change', handleImageUpload);
+        gridWidthInput.addEventListener('input', () => state.gridWidth = parseInt(gridWidthInput.value));
+        gridHeightInput.addEventListener('input', () => state.gridHeight = parseInt(gridHeightInput.value));
+        showCoordinatesCheckbox.addEventListener('change', () => {
+            state.showCoordinates = showCoordinatesCheckbox.checked;
+            if (state.image) renderGrid();
+        });
+        colorModeCheckbox.addEventListener('change', () => {
+            state.colorMode = colorModeCheckbox.checked;
+            colorCountSelect.disabled = !state.colorMode;
+        });
+        colorCountSelect.addEventListener('change', () => {
+            state.colorCount = parseInt(colorCountSelect.value);
+        });
+        generateBtn.addEventListener('click', generateGrid);
+        downloadBtn.addEventListener('click', downloadCanvas);
+        zoomSlider.addEventListener('input', handleZoom);
+        useOriginalSize.addEventListener('click', setOriginalSize);
+        keepAspectRatio.addEventListener('click', setAspectRatio);
+
+        function handleImageUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const img = new Image();
+                img.onload = () => {
+                    state.image = img;
+                    state.originalImageWidth = img.width;
+                    state.originalImageHeight = img.height;
+                    
+                    previewImg.src = event.target.result;
+                    imageDimensions.textContent = `Оригінальний розмір: ${img.width} × ${img.height} пікселів`;
+                    imagePreview.style.display = 'block';
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function setOriginalSize() {
+            const maxSize = 200;
+            let width = state.originalImageWidth;
+            let height = state.originalImageHeight;
+
+            if (width > maxSize || height > maxSize) {
+                if (width > height) {
+                    height = Math.round((height / width) * maxSize);
+                    width = maxSize;
+                } else {
+                    width = Math.round((width / height) * maxSize);
+                    height = maxSize;
+                }
+            }
+
+            state.gridWidth = width;
+            state.gridHeight = height;
+            gridWidthInput.value = width;
+            gridHeightInput.value = height;
+        }
+
+        function setAspectRatio() {
+            const targetWidth = state.gridWidth;
+            const aspectRatio = state.originalImageHeight / state.originalImageWidth;
+            const newHeight = Math.round(targetWidth * aspectRatio);
+            
+            state.gridHeight = newHeight;
+            gridHeightInput.value = newHeight;
+        }
+
+        function generateGrid() {
+            if (!state.image) {
+                alert('Будь ласка, завантажте зображення');
+                return;
+            }
+
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = state.gridWidth;
+            tempCanvas.height = state.gridHeight;
+            const tempCtx = tempCanvas.getContext('2d');
+
+            tempCtx.drawImage(state.image, 0, 0, state.gridWidth, state.gridHeight);
+            const imageData = tempCtx.getImageData(0, 0, state.gridWidth, state.gridHeight);
+            
+            if (state.colorMode) {
+                state.colors = extractColors(imageData, state.colorCount);
+                state.gridData = quantizeToColors(imageData, state.colors);
+            } else {
+                state.colors = ['#FFFFFF', '#2C2C2C'];
+                state.gridData = convertToBlackWhite(imageData);
+            }
+
+            renderGrid();
+            updateInfo();
+            downloadBtn.style.display = 'block';
+            zoomControl.style.display = 'flex';
+        }
+
+        function extractColors(imageData, maxColors) {
+            const pixels = [];
+            for (let i = 0; i < imageData.data.length; i += 4) {
+                const alpha = imageData.data[i + 3];
+                if (alpha < 128) continue;
+                
+                pixels.push([
+                    imageData.data[i],
+                    imageData.data[i + 1],
+                    imageData.data[i + 2]
+                ]);
+            }
+
+            if (pixels.length === 0) {
+                return ['#FFFFFF'];
+            }
+
+            const colors = kMeans(pixels, Math.min(maxColors, pixels.length));
+            
+            colors.sort((a, b) => {
+                const brightnessA = (a[0] + a[1] + a[2]) / 3;
+                const brightnessB = (b[0] + b[1] + b[2]) / 3;
+                return brightnessB - brightnessA;
+            });
+
+            return colors.map(c => `rgb(${Math.round(c[0])}, ${Math.round(c[1])}, ${Math.round(c[2])})`);
+        }
+
+        function kMeans(data, k) {
+            if (data.length < k) {
+                return data;
+            }
+
+            const indices = [];
+            for (let i = 0; i < k; i++) {
+                indices.push(Math.floor(i * data.length / k));
+            }
+            let centroids = indices.map(i => [...data[i]]);
+            
+            let iterations = 15;
+
+            for (let iter = 0; iter < iterations; iter++) {
+                const clusters = Array(k).fill().map(() => []);
+
+                data.forEach(point => {
+                    let minDist = Infinity;
+                    let clusterIndex = 0;
+                    
+                    centroids.forEach((centroid, i) => {
+                        const dist = Math.sqrt(
+                            Math.pow(point[0] - centroid[0], 2) +
+                            Math.pow(point[1] - centroid[1], 2) +
+                            Math.pow(point[2] - centroid[2], 2)
+                        );
+                        if (dist < minDist) {
+                            minDist = dist;
+                            clusterIndex = i;
+                        }
+                    });
+                    clusters[clusterIndex].push(point);
+                });
+
+                centroids = clusters.map((cluster, i) => {
+                    if (cluster.length === 0) return centroids[i];
+                    const sum = cluster.reduce((acc, p) => [acc[0] + p[0], acc[1] + p[1], acc[2] + p[2]], [0, 0, 0]);
+                    return [sum[0] / cluster.length, sum[1] / cluster.length, sum[2] / cluster.length];
+                });
+            }
+
+            return centroids;
+        }
+
+        function quantizeToColors(imageData, colors) {
+            const grid = [];
+            for (let i = 0; i < imageData.data.length; i += 4) {
+                const r = imageData.data[i];
+                const g = imageData.data[i + 1];
+                const b = imageData.data[i + 2];
+
+                let minDist = Infinity;
+                let colorIndex = 0;
+
+                colors.forEach((color, idx) => {
+                    const rgb = color.match(/\d+/g).map(Number);
+                    const dist = Math.sqrt(
+                        Math.pow(r - rgb[0], 2) +
+                        Math.pow(g - rgb[1], 2) +
+                        Math.pow(b - rgb[2], 2)
+                    );
+                    if (dist < minDist) {
+                        minDist = dist;
+                        colorIndex = idx;
+                    }
+                });
+
+                grid.push(colorIndex);
+            }
+            return grid;
+        }
+
+        function convertToBlackWhite(imageData) {
+            const grid = [];
+            for (let i = 0; i < imageData.data.length; i += 4) {
+                const r = imageData.data[i];
+                const g = imageData.data[i + 1];
+                const b = imageData.data[i + 2];
+                const brightness = (r + g + b) / 3;
+                grid.push(brightness > 127 ? 0 : 1);
+            }
+            return grid;
+        }
+
+        function renderGrid() {
+            const existingCanvas = document.getElementById('gridCanvas');
+            if (existingCanvas) {
+                const container = existingCanvas.parentElement;
+                container.remove();
+            }
+            
+            const placeholder = canvasWrapper.querySelector('.placeholder');
+            if (placeholder) placeholder.remove();
+
+            const cellSize = 20;
+            const coordMargin = state.showCoordinates ? 30 : 0;
+            
+            const container = document.createElement('div');
+            container.className = 'canvas-container';
+            
+            const canvas = document.createElement('canvas');
+            canvas.id = 'gridCanvas';
+            
+            canvas.width = state.gridWidth * cellSize + coordMargin;
+            canvas.height = state.gridHeight * cellSize + coordMargin;
+            
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            if (state.showCoordinates) {
+                ctx.fillStyle = '#8B8B8B';
+                ctx.font = '9px DM Sans';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+
+                for (let x = 0; x < state.gridWidth; x++) {
+                    ctx.fillText((x + 1).toString(), coordMargin + x * cellSize + cellSize / 2, 15);
+                }
+
+                ctx.textAlign = 'right';
+                for (let y = 0; y < state.gridHeight; y++) {
+                    ctx.fillText((y + 1).toString(), 25, coordMargin + y * cellSize + cellSize / 2);
+                }
+            }
+
+            for (let y = 0; y < state.gridHeight; y++) {
+                for (let x = 0; x < state.gridWidth; x++) {
+                    const index = y * state.gridWidth + x;
+                    const colorIndex = state.gridData[index];
+                    
+                    ctx.fillStyle = state.colors[colorIndex];
+                    ctx.fillRect(
+                        coordMargin + x * cellSize,
+                        coordMargin + y * cellSize,
+                        cellSize,
+                        cellSize
+                    );
+
+                    ctx.strokeStyle = '#E5E0D8';
+                    ctx.lineWidth = 1;
+                    ctx.strokeRect(
+                        coordMargin + x * cellSize,
+                        coordMargin + y * cellSize,
+                        cellSize,
+                        cellSize
+                    );
+                }
+            }
+
+            if (state.showCoordinates) {
+                ctx.strokeStyle = '#2C2C2C';
+                ctx.lineWidth = 2;
+                ctx.strokeRect(coordMargin, coordMargin, state.gridWidth * cellSize, state.gridHeight * cellSize);
+            }
+
+            container.appendChild(canvas);
+            container.style.transform = `scale(${state.zoom})`;
+            container.style.transformOrigin = 'top left';
+            canvasWrapper.appendChild(container);
+        }
+
+        function handleZoom() {
+            state.zoom = parseFloat(zoomSlider.value);
+            zoomValue.textContent = Math.round(state.zoom * 100) + '%';
+            const container = document.querySelector('.canvas-container');
+            if (container) {
+                container.style.transform = `scale(${state.zoom})`;
+            }
+        }
+
+        function updateInfo() {
+            gridInfo.textContent = `Схема: ${state.gridWidth} × ${state.gridHeight} петель`;
+            colorInfo.textContent = `Кольорів: ${state.colors.length}`;
+            infoPanel.style.display = 'flex';
+        }
+
+        function downloadCanvas() {
+            const canvas = document.getElementById('gridCanvas');
+            if (!canvas) return;
+
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = canvas.width;
+            tempCanvas.height = canvas.height;
+            const tempCtx = tempCanvas.getContext('2d');
+            
+            tempCtx.fillStyle = '#FFFFFF';
+            tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+            tempCtx.drawImage(canvas, 0, 0);
+
+            tempCanvas.toBlob((blob) => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `crochet-pattern-${state.gridWidth}x${state.gridHeight}.png`;
+                a.click();
+                URL.revokeObjectURL(url);
+            });
+        }
+    </script>
+</body>
+</html>
