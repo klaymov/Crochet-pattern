@@ -23,6 +23,8 @@ const generateBtn = document.getElementById('generateBtn');
 const downloadBtn = document.getElementById('downloadBtn');
 const zoomSlider = document.getElementById('zoomSlider');
 const zoomValue = document.getElementById('zoomValue');
+const zoomInBtn = document.getElementById('zoomIn');
+const zoomOutBtn = document.getElementById('zoomOut');
 const canvasWrapper = document.getElementById('canvasWrapper');
 const infoPanel = document.getElementById('infoPanel');
 const gridInfo = document.getElementById('gridInfo');
@@ -51,6 +53,8 @@ colorCountSelect.addEventListener('change', () => {
 generateBtn.addEventListener('click', generateGrid);
 downloadBtn.addEventListener('click', downloadCanvas);
 zoomSlider.addEventListener('input', handleZoom);
+zoomInBtn.addEventListener('click', () => adjustZoom(0.01));
+zoomOutBtn.addEventListener('click', () => adjustZoom(-0.01));
 useOriginalSize.addEventListener('click', setOriginalSize);
 keepAspectRatio.addEventListener('click', setAspectRatio);
 
@@ -400,6 +404,16 @@ function handleCanvasClick(e) {
 
 function handleZoom() {
     state.zoom = parseFloat(zoomSlider.value);
+    updateZoomUI();
+}
+
+function adjustZoom(delta) {
+    state.zoom = Math.min(Math.max(state.zoom + delta, 0.1), 3);
+    zoomSlider.value = state.zoom;
+    updateZoomUI();
+}
+
+function updateZoomUI() {
     zoomValue.textContent = Math.round(state.zoom * 100) + '%';
     const container = document.querySelector('.canvas-container');
     const canvas = document.getElementById('gridCanvas');
